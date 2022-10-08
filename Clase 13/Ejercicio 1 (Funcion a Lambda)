@@ -11,8 +11,8 @@ lista_palabras = [
 #    return (base*altura)/2
 #---------------------------------
 #Usando Lambda
-sup_triangulo = lambda base, altura : base * altura(2,7)
-print(sup_triangulo)
+sup_triangulo = lambda base, altura : base * altura
+print(sup_triangulo(2, 5))
 #:::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -51,8 +51,9 @@ print(obtener_mas_letras)
 #    return seleccionados
 #--------------------------
 #USANDO LAMBDA Y FILTER
-obtener_nombres_cantidad_letras = list(filter(lambda palabra, cantidad : len(palabra) == cantidad, lista_palabras))
-print(obtener_nombres_cantidad_letras())
+
+obtener_nombres_cantidad_letras = list(filter(lambda palabra : len(palabra) == 4, lista_palabras))
+print(obtener_nombres_cantidad_letras)
 #:::::::::::::::::::::::::::::::::::::::::::::::
 
 
