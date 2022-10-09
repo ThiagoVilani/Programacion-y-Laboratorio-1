@@ -1,5 +1,6 @@
 from random import randint
 from functools import reduce
+from random import shuffle
 
 lista_palabras = [
     "Goku", "Vegeta", "Frieza", "Cell", "Beerus", 'Krillin'
@@ -52,7 +53,8 @@ print(obtener_mas_letras)
 #--------------------------
 #USANDO LAMBDA Y FILTER
 
-obtener_nombres_cantidad_letras = list(filter(lambda palabra : len(palabra) == 4, lista_palabras))
+cantidad = 4
+obtener_nombres_cantidad_letras = list(filter(lambda palabra : len(palabra) == cantidad, lista_palabras))
 print(obtener_nombres_cantidad_letras)
 #:::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -67,7 +69,14 @@ print(obtener_nombres_cantidad_letras)
 #        for elemento in lista:
 #            desordenada.insert(indice, elemento)
 #    return desordenada
-#
+#-----------------------------
+#USANDO SHUFFLE
+shuffle(lista_palabras)
+print(lista_palabras, "desorden")
+#:::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
 ## Refactorizar usando sort y lamda
 #def ordenar_burbujeo(lista: list) -> list:
 #    lista_copia = lista.copy()
@@ -76,19 +85,24 @@ print(obtener_nombres_cantidad_letras)
 #            if lista_copia[i] > lista_copia[j]:
 #                lista_copia[i], lista_copia[j] = lista_copia[j], lista_copia[i]
 #    return lista_copia
-#
-#
-#heroes = [
-#    "goKU", "vEgETa", 'kriLLin'
-#]
-#
-#villanos = [
-#    "FrIEzA", "CELl", "Majin Buu"
-#]
-#
-#ataques = [
-#    "Kame hame ha", "Final flash", "Kienzan"
-#]
+#--------------------
+#USANDO SORT Y LAMBDA
+lista_palabras.sort()
+print(lista_palabras)
+#:::::::::::::::::::::::::::::::::::::::::::::::
+
+
+heroes = [
+    "goKU", "vEgETa", 'kriLLin'
+]
+
+villanos = [
+    "FrIEzA", "CELl", "Majin Buu"
+]
+
+ataques = [
+    "Kame hame ha", "Final flash", "Kienzan"
+]
 #
 ## Refactorizar usando zip
 #for ind_h in range(len(heroes)):
@@ -103,4 +117,8 @@ print(obtener_nombres_cantidad_letras)
 #            print(mensaje)
 #            break
 #        break
-#
+#-------------------------------
+#USANDO ZIP
+for heroe, villano, ataque in zip(heroes, villanos, ataques):
+    print("\n{0} Lanza un {1} a {2}".format(heroe.capitalize(), ataque.capitalize(), villano.capitalize()))
+#:::::::::::::::::::::::::::::::::::::::::::::::
