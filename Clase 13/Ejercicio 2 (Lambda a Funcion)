@@ -17,23 +17,56 @@ print("Superficie del circulo: {0}".format(superficie_circulo(15)))
 ## Refactorizar a la version clasica
 #minisculizar = lambda x: str(x).lower()
 #print(f'Lista Minuscula: {minisculizar(lista_palabras)}')
-#
+#---------------------------
+#USANDO FUNCIONES
+def pasar_minusculas(lista:list):
+    lista_copia = lista.copy()
+    for i in range(len(lista_copia)):
+        lista_copia[i] = lista_copia[i].lower()
+    return lista_copia
+
+print("Lista Minuscula: {0}".format(pasar_minusculas(lista_palabras)))
+#:::::::::::::::::::::::::::::::::::::::::::::
+
+
 ## Refactorizar a la version clasica
-#capitalizar = lambda x: str(x).capitalize()
-#lista_mapeada = list(map(capitalizar, lista_palabras))
-#print(f'Lista Capitalizada: {lista_mapeada}')
-#
-#heroes = [
-#    "goKU", "vEgETa", 'kriLLin'
-#]
-#
-#villanos = [
-#    "FrIEzA", "CELl", "Majin Buu"
-#]
-#
-#ataques = [
-#    "Kame hame ha", "Final flash", "Kienzan"
-#]
-#
+capitalizar = lambda x: str(x).capitalize()
+lista_mapeada = list(map(capitalizar, lista_palabras))
+print(f'Lista Capitalizada: {lista_mapeada}')
+#----------------------------
+#USANDO FUNCIONES
+def capitalizando(lista:list):
+    lista_copia = lista.copy()
+    for i in range(len(lista_copia)):
+        lista_copia[i] = lista_copia[i].capitalize()
+    return lista_copia
+
+print("Lista Capitalizada: {0}".format(capitalizando(lista_palabras)))
+#::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+heroes = [
+    "goKU", "vEgETa", 'kriLLin'
+]
+
+villanos = [
+    "FrIEzA", "CELl", "Majin Buu"
+]
+
+ataques = [
+    "Kame hame ha", "Final flash", "Kienzan"
+]
+
 #for heroe, ataque, villano in zip(heroes, ataques, villanos):
 #    print(f'{heroe.capitalize()} Lanza un {ataque.capitalize()} a {villano.capitalize()}')
+#-----------------------
+#USANDO FUNCIONES
+def crear_lista(lista_heroes:list, lista_villanos:list, lista_ataques:list):
+    string_formateada = ""
+    for i in range(len(lista_heroes)):
+        string_formateada += "{0} lanza un ataque {1} a {2}\n".format(lista_heroes[i].capitalize(), lista_ataques[i].capitalize(), lista_villanos[i].capitalize())
+    return string_formateada
+
+print(crear_lista(heroes, villanos, ataques))
+#:::::::::::::::::::::::::::::::::::::::::
