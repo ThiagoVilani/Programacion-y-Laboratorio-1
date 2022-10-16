@@ -11,8 +11,6 @@ while is_running:
     for evento in lista_eventos:
         if evento.type == pygame.QUIT:
             is_running = False
-        if evento.type == pygame.MOUSEBUTTONDOWN:
-            pos_circulo  = list(evento.pos)
     ventana_principal.fill((200, 0, 0)) #CAMBIO EL COLOR DEL FONDO DE LA VENTANA        
     pygame.draw.circle(ventana_principal, (255, 0, 0), pos_circulo, 50)
 
