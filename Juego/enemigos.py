@@ -42,20 +42,25 @@ def update(lista_zombies, pos_player):
         zombie["rect"][1] = zombie["rect"][1] + zombie["trayectoria"][1]
         
 def actualizar_pantalla(lista_zombies, player, ventana_principal, lista_balas_visibles, imagen_sangre):
-    game_over = True
+    game_over = False
+    lista_balas_restantes = lista_balas_visibles.copy()
     for zombie in lista_zombies:
         if zombie["rect"].colliderect(player["rect"]):
-            game_over = False
-        for bala in lista_balas_visibles:
-            if(bala["rect"].colliderect(zombie["rect"])):
-                ventana_principal.blit(imagen_sangre,  (zombie["rect"][0], zombie["rect"][1]))
-                zombie["rect"][0] = random.randrange (0, 800)
-                zombie["rect"][1] = random.randrange (-200, -50)
-    
+            game_over = True
+        for i in range(len(lista_balas_visibles)):
+            #try:
+                if(lista_balas_visibles[i]["rect"].colliderect(zombie["rect"])):
+                    lista_balas_restantes.pop(i)
+                    ventana_principal.blit(imagen_sangre,  (zombie["rect"][0], zombie["rect"][1]))
+                    zombie["rect"][0] = random.randrange (0, 800)
+                    zombie["rect"][1] = random.randrange (-200, -50)
+            #except:
+            #    print("ERROR")
+            #    pass
 
-            #personaje["score"] = personaje["score"] + 100
-            #restar_zombie(zombie)
+                #personaje["score"] = personaje["score"] + 100
+                #restar_zombie(zombie)
         ventana_principal.blit(zombie["surface"], (zombie["rect"][0], zombie["rect"][1]))
         if(zombie["rect"].y > 620):
-            game_over = False
-    return game_over
+            game_over = True
+    return game_over, lista_balas_restantes

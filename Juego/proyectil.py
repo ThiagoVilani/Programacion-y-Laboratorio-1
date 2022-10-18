@@ -31,9 +31,8 @@ def calcular_trayectoria(bala, player):
 
 def update(lista_balas_visibles, ventana_principal):
     for bala in lista_balas_visibles:
-        #rect_bala = bala["rect"]
-        #rect_bala.y = rect_bala.y + bala["trayectoria"][1]
-        #rect_bala.x = rect_bala.x + bala["trayectoria"][0]
         bala["rect"][0] = bala["rect"][0] + bala["trayectoria"][0]
         bala["rect"][1] = bala["rect"][1] + bala["trayectoria"][1]
+        bala["rect"][0] = bala["rect"][0] + (bala["trayectoria"][0] * 3)
+        bala["rect"][1] = bala["rect"][1] + (bala["trayectoria"][1] * 3)
         ventana_principal.blit(bala["surface"], (bala["rect"][0], bala["rect"][1]))
