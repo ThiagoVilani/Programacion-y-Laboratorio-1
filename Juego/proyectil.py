@@ -3,7 +3,7 @@ import random
 
 
 def crear_bala(ancho,alto):
-    imagen_bala = pygame.image.load("Programacion-y-Laboratorio-1\Juego\pseudo_bala.png")
+    imagen_bala = pygame.image.load("Programacion-y-Laboratorio-1\Juego\circulo_negro.png")
     imagen_bala = pygame.transform.scale(imagen_bala,(ancho,alto))
     rect_bala = imagen_bala.get_rect()
     dict_bala = {}
