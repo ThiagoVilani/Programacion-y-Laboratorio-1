@@ -14,11 +14,18 @@ def crear_player(pos_player):
 def movimiento(pos_player, player):
     lista_teclas = pygame.key.get_pressed()
     if lista_teclas[pygame.K_a]:
-        pos_player[0] = pos_player[0] - 1
-        player["rect"][0] = player["rect"][0] -1
+        if pos_player[0] < 0:
+            pos_player[0] = pos_player[0]
+        else:    
+            pos_player[0] = pos_player[0] - 1
+            player["rect"][0] = player["rect"][0] -1
+        
     if lista_teclas[pygame.K_d]:
-        pos_player[0] = pos_player[0] + 1
-        player["rect"][0] = player["rect"][0] +1
+        if pos_player[0] > 770:
+            pos_player[0] = pos_player[0]
+        else:    
+            pos_player[0] = pos_player[0] + 1
+            player["rect"][0] = player["rect"][0] +1
 
     x, y = pygame.mouse.get_pos()
     x = x/5
