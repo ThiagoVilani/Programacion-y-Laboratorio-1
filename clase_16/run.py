@@ -10,7 +10,7 @@ running = True
 #cuadrado = pygame.Rect(30, 30, 60, 60)
 #set tick timer 
 tick = pygame.USEREVENT
-tiempo = pygame.time.set_timer(tick,1000)
+pygame.time.set_timer(tick,1000)
 
 tablero_juego = tablero.init(4, 2)
 while running:
@@ -20,18 +20,20 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN :
-            indice_tarjeta = tablero.colicion(tablero_juego,event.pos)
+            #indice_tarjeta = tablero.colicion(tablero_juego,event.pos)
+            #pos_mouse = event.pos
+            tablero.update(tablero_juego, event.pos)
         if event.type == pygame.USEREVENT:
             if event.type == tick:
+                   
                 print("Ya paso un segundo")
-        
+                print(pos_mouse)
+    pos_mouse = None        
     pantalla_juego.fill((255, 255, 255))
     
-    #tablero.update(tablero_juego, tiempo)
+    #tablero.update(tablero_juego, tick)
     tablero.render(tablero_juego,pantalla_juego)
     pygame.display.flip()
-    for i in range(len(tablero_juego["lista_tarjetas"])):
-        print(tablero_juego["lista_tarjetas"][i])
 
 
 # Done! Time to quit.
