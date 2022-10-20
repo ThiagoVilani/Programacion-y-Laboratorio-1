@@ -12,7 +12,7 @@ running = True
 tick = pygame.USEREVENT
 tiempo = pygame.time.set_timer(tick,1000)
 
-tablero_juego = tablero.init()
+tablero_juego = tablero.init(4, 2)
 while running:
 
     # Se verifica si el usuario cerro la ventana
@@ -28,9 +28,11 @@ while running:
     pantalla_juego.fill((255, 255, 255))
     
     #tablero.update(tablero_juego, tiempo)
-    print(tablero_juego)
     tablero.render(tablero_juego,pantalla_juego)
     pygame.display.flip()
+    for i in range(len(tablero_juego["lista_tarjetas"])):
+        print(tablero_juego["lista_tarjetas"][i])
+
 
 # Done! Time to quit.
 pygame.quit()

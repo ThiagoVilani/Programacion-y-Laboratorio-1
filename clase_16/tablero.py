@@ -1,10 +1,10 @@
 import pygame
 import math
 import random
-from constantes import CANTIDAD_TARJETAS_H, CANTIDAD_TARJETAS_V
+from constantes import *
 import tarjeta
 import pygame
-
+print
 '''
 ANCHO_PANTALLA = 500
 ALTO_PANTALLA = 550
@@ -12,7 +12,7 @@ ALTO_TEXTO = 50
 CANTIDAD_TARJETAS_H = 2
 CANTIDAD_TARJETAS_V = 2
 '''
-def init():
+def init(cant_tarjetas_v, cant_tarjetas_h):
     '''
     Crea una lista de tarjetas
     Recibe como parametro la cantidad de tarjetas
@@ -20,12 +20,27 @@ def init():
     '''
     dic_tablero = {}
     lista_tarjetas = []
-    contador_imagen = 0
-    for i in range(CANTIDAD_TARJETAS_H * CANTIDAD_TARJETAS_V):
-        nombre_imagen = "0{}.png".format(contador_imagen)
-        lista_tarjetas.append(tarjeta.init(nombre_imagen, ))
-        contador_imagen += 1 
+    contador_imagen = 1
+    x=0
+    x_2 = 0
+    y=0
+    ancho_tarjeta = ANCHO_PANTALLA / cant_tarjetas_h
+    alto_tarjeta = ALTO_PANTALLA / cant_tarjetas_v
+
+    for i in range(cant_tarjetas_v + cant_tarjetas_h):
+        nombre_imagen = r"\0{0}.png".format(contador_imagen)
+        if i <= (cant_tarjetas_h - 1):
+            lista_tarjetas.append(tarjeta.init(nombre_imagen, r"\00.png", x,y, ancho_tarjeta, alto_tarjeta))
+            contador_imagen += 1 
+            x += ancho_tarjeta
+        else:
+            y = alto_tarjeta
+            lista_tarjetas.append(tarjeta.init(nombre_imagen, r"\00.png", x_2, y, ancho_tarjeta, alto_tarjeta))
+            x_2 += ancho_tarjeta
+            contador_imagen += 1 
+        
     dic_tablero["lista_tarjetas"] = lista_tarjetas
+    print(lista_tarjetas)
     return dic_tablero
 
 def colicion(d_tablero,pos_xy):
@@ -48,8 +63,8 @@ def update(d_tablero, tiempo):
     '''
     lista_tarjetas = d_tablero["lista_tarjetas"]
     #for i in range(len("lisa_tarjetas")):
-    for i in range(2):
-        print(lista_tarjetas)
+    #for i in range(2):
+        #print(lista_tarjetas)
         #if lista_tarjetas[i]["visible"] == True:
          #   pass
         
@@ -61,9 +76,9 @@ def render(d_tablero,pantalla_juego):
     '''
     lista_tarjetas = d_tablero["lista_tarjetas"]
     for tarjeta in lista_tarjetas:
-        print(tarjeta)
+        #print(tarjeta)
         if tarjeta["visible"] == True:
             pantalla_juego.blit(tarjeta["surface"],tarjeta["rect"])
         else:
             pantalla_juego.blit(tarjeta["surface_hide"],tarjeta["rect"])
-     
+        
