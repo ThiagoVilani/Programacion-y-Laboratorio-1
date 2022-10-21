@@ -5,12 +5,12 @@ GRIS = (206, 206, 206)
 AZUL = (30, 136, 229)
 
 #Seteos Juego
-ANCHO_PANTALLA = 900
-ALTO_PANTALLA = 500
+ANCHO_PANTALLA = 700
+ALTO_PANTALLA = 700
 ALTO_TEXTO = 50
-CANTIDAD_TARJETAS_H = 2
+CANTIDAD_TARJETAS_H = 4
 CANTIDAD_TARJETAS_V = 4
 CANTIDAD_TARJETAS_UNICAS = int((CANTIDAD_TARJETAS_H*CANTIDAD_TARJETAS_V)/2)
 ANCHO_TARJETA = int(ANCHO_PANTALLA / CANTIDAD_TARJETAS_H)
 ALTO_TARJETA =int( (ALTO_PANTALLA - ALTO_TEXTO)/ CANTIDAD_TARJETAS_V)
-PATH_RECURSOS = r"C:\Users\vilan\Desktop\Programación & Laboratorio I\Programacion-y-Laboratorio-1\clase_16\recursos\\"
+PATH_RECURSOS = r"C:\Users\vilan\OneDrive\Escritorio\Programación & Laboratorio I\Programacion-y-Laboratorio-1\clase_16\recursos\\"
