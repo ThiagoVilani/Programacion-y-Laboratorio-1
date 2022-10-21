@@ -47,27 +47,43 @@ def colicion(dic_tablero, pos_xy):
         for i in range(len(dic_tablero["lista_tarjetas"])):
             if dic_tablero["lista_tarjetas"][i]["rect"].collidepoint(pos_xy):
                 indice_tarjeta = i
-                dic_tablero["lista_tarjetas"][i]["tiempo_click"] = pygame.time.get_ticks()
+                dic_tablero["tiempo_click"] = pygame.time.get_ticks()
     return indice_tarjeta    
 
-def update(dic_tablero, pos_mouse, tiempo_origen):
+def update(dic_tablero, pos_mouse, tiempo_origen, lista_tarjetas_visibles, indices_tarjetas_visibles):
     '''
     verifica si es necesario actualizar el estado de alguna tarjeta, 
     en funcion de su propio estado y el de las otras
     Recibe como parametro el tablero y el tiempo transcurrido desde el ultimo llamado
-    '''
+    '''    
+    
     tarjeta_a_descubrir = colicion(dic_tablero, pos_mouse)
     if tarjeta_a_descubrir != None:
         dic_tablero["lista_tarjetas"][tarjeta_a_descubrir]["visible"] = True
-    for i in range(len(dic_tablero["lista_tarjetas"])):
-        if tiempo_origen - dic_tablero["lista_tarjetas"][i]:
-            
+        pos_mouse = None
+        lista_tarjetas_visibles.append(dic_tablero["lista_tarjetas"][tarjeta_a_descubrir])
+        indices_tarjetas_visibles.append(tarjeta_a_descubrir)
+    #:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+    if len(lista_tarjetas_visibles) > 1:
+        if (lista_tarjetas_visibles[0]["path_imagen"] == lista_tarjetas_visibles[1]["path_imagen"]):
+            print("las imagenes coinciden")
+            dic_tablero["lista_tarjetas"][indices_tarjetas_visibles[0]]["visible"] == True
+            dic_tablero["lista_tarjetas"][indices_tarjetas_visibles[1]]["visible"] == True
+            lista_tarjetas_visibles = []
+            indices_tarjetas_visibles = []
+        if 0 < dic_tablero["tiempo_click"]:
+            tiempito = tiempo_origen - dic_tablero["tiempo_click"] 
+            #print(tiempito)
+            #print(tiempo_origen,"tiempo desde el origen")
+            #print(dic_tablero["tiempo_click"],"tiempo al click")  
+            #print(tiempito,"tiempo desde el click")
+            if 3000 < tiempito:
+                dic_tablero["tiempo_click"] = 0
+                for tarjeta in dic_tablero["lista_tarjetas"]:
+                    tarjeta["visible"] = False
+    return pos_mouse, lista_tarjetas_visibles, indices_tarjetas_visibles
     
-    #indice = coincidencia(lista_tarjetas)
-    #if indice != None:
-    #    lista_tarjetas[indice][0]["visible"] = True
-    #    lista_tarjetas[indice][1]["visible"] = True
-    
+        
         
 
 def render(d_tablero,pantalla_juego):
